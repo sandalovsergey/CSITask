@@ -27,9 +27,9 @@ public class Test2Example implements Test {
     @Override
     public List<Price> answerPriceList() {
         List<Price> answerPriceList = new ArrayList<>();
-        answerPriceList.add(new Price( "122856", 1, 1, date("01.01.2013 00:12:45"), date("20.01.2013 00:01:01"), 50));
-        answerPriceList.add(new Price( "122856", 1, 1, date("20.01.2013 00:01:01"), date("25.01.2013 23:59:55"), 60));
-        answerPriceList.add(new Price( "122856", 1, 1, date("25.01.2013 23:59:55"), date("31.01.2013 23:40:59"), 50));
+        answerPriceList.add(new Price("122856", 1, 1, date("01.01.2013 00:12:45"), date("20.01.2013 00:01:01"), 50));
+        answerPriceList.add(new Price("122856", 1, 1, date("20.01.2013 00:01:01"), date("25.01.2013 23:59:55"), 60));
+        answerPriceList.add(new Price("122856", 1, 1, date("25.01.2013 23:59:55"), date("31.01.2013 23:40:59"), 50));
 
         return answerPriceList;
     }

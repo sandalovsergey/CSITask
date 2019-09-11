@@ -2,9 +2,10 @@ import org.junit.jupiter.api.Test;
 import ru.crystals.Price;
 import ru.crystals.Tools;
 import tests.*;
-import java.util.List;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class MergePricesJUnitTests {
     Tools tools = new Tools();

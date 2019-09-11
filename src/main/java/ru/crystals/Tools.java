@@ -21,26 +21,26 @@ public class Tools {
     /**
      * Метод выделять одну уникальную цену из общего списка цен, начиная с индекса beginIndex
      * Используется то, что данные предварительно отсортированы.
+     *
      * @param l
      * @param beginIndex
-     * @return
+     * @return Уникальная цена
      */
 
     private List<Price> getCluster(final List<Price> l, int beginIndex) {
-        if (l.size() == 0) {
-            return null;
-        }
-        Price curPrice = l.get(beginIndex);
-        Price temp = l.get(beginIndex);
         List<Price> curList = new ArrayList<>();
+        if (l.size() != 0) {
+            Price curPrice = l.get(beginIndex);
+            Price temp = l.get(beginIndex);
 
-        while (Price.getTimelineComparator().compare(curPrice, temp) == 0) {
-            curList.add(temp);
-            ++beginIndex;
-            if (beginIndex < l.size()) {
-                temp = l.get(beginIndex);
-            } else {
-                return curList;
+            while (Price.getTimelineComparator().compare(curPrice, temp) == 0) {
+                curList.add(temp);
+                ++beginIndex;
+                if (beginIndex < l.size()) {
+                    temp = l.get(beginIndex);
+                } else {
+                    return curList;
+                }
             }
         }
         return curList;
@@ -50,13 +50,13 @@ public class Tools {
      * Метод кластеризует коллекцию имеющихся цен на уникальные
      * Уникальная цена(Cluster) -- это объединение цен с фиксированным productCode, Number, Department.
      * Уникальная цена может состоять из нескольких цен, поэтому представляется как список Price
+     *
      * @param list
      * @return Список уникальных цен
      */
 
     private List<List<Price>> getClusters(final List<Price> list) {
         list.sort(Price.getUniquePriceComparator());
-
         int beginIndex = 0;
         final List<List<Price>> res = new ArrayList<>();
         while (beginIndex < list.size()) {
@@ -64,14 +64,12 @@ public class Tools {
             res.add(cluster);
             beginIndex += cluster.size();
         }
-
         return res;
     }
 
     private boolean isMatching(final List<Price> leftCluster, final List<Price> rightCluster) {
         final Price left = leftCluster.get(0);
         final Price right = rightCluster.get(0);
-
         return Price.getTimelineComparator().compare(left, right) == 0;
     }
 
@@ -80,9 +78,10 @@ public class Tools {
      * Идея объединения: новые цены полностью войдут в результат. Записываем их в ответ и итерируем по старым ценам.
      * В зависимости от того, есть ли свободное место на "временной линии" дописываем в ответ. Если value старой и новой цены
      * совпадают, то объединяем цены
+     *
      * @param oldPriceCLuster
      * @param newPriceCluster
-     * @return
+     * @return Уникальная цена после объединения
      */
 
     private List<Price> mergeClusters(List<Price> oldPriceCLuster, List<Price> newPriceCluster) {
@@ -133,7 +132,7 @@ public class Tools {
                 if (pLeftTail.isSameValAndRight(newPrice)) {
                     res.get(newIndex).mergeLeft(pLeftTail);
                     if (newIndex > 0 && res.get(newIndex - 1).isSameValAndRight(res.get(newIndex))) {
-                        res.get(newIndex ).mergeLeft(res.get(newIndex - 1));
+                        res.get(newIndex).mergeLeft(res.get(newIndex - 1));
                         res.remove(--newIndex);
                     }
                 } else {
@@ -142,13 +141,13 @@ public class Tools {
                 }
             }
         }
-
         return res;
     }
 
     /**
      * Метод сливает старые и новые цены по правилам, указанным в ТЗ
      * Работаем с копиями данных, чтобы не изменить входные
+     *
      * @param oldPriceList
      * @param newPriceList
      * @return Результат слияния цен

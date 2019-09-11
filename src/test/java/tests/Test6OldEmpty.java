@@ -28,7 +28,7 @@ public class Test6OldEmpty implements Test {
     public List<Price> answerPriceList() {
         List<Price> answerPriceList = new ArrayList<>();
         answerPriceList.add(new Price("122856", 1, 1, date("20.01.2019 00:00:00"), date("20.02.2019 00:00:00"), 80));
-        answerPriceList.add(new Price( "122856", 1, 1, date("20.02.2019 00:00:00"), date("20.03.2019 00:00:00"), 85));
+        answerPriceList.add(new Price("122856", 1, 1, date("20.02.2019 00:00:00"), date("20.03.2019 00:00:00"), 85));
 
         return answerPriceList;
     }

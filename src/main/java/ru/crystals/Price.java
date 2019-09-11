@@ -121,7 +121,7 @@ public class Price {
     }
 
     public boolean isFullLeft(Price p) {
-        return this.getEnd().getTime() <= p.getBegin().getTime() ? true : false;
+        return this.getEnd().getTime() <= p.getBegin().getTime();
     }
 
     public Price copy() {
